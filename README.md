@@ -57,7 +57,7 @@
 | Frontend UI      | Streamlit                    | Rapid web application interface.               |
 | Audio Input      | streamlit-mic-recorder       | Browser-compatible microphone recording.        |
 | Speech Processing| SpeechRecognition            | Converting WAV audio to text (STT).            |
-| The "Brain"      | Google Gemini 1.5 Flash      | LLM for generating intelligent, age-appropriate responses. |
+| The "Brain"      | Google Gemini                | LLM for generating intelligent, age-appropriate responses. |
 | Audio Output     | gTTS (Google TTS)            | Converting AI text response to MP3 audio.      |
 
 
