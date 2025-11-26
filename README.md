@@ -43,6 +43,16 @@
 - **AI Brain:** Google Gemini 1.5 Flash
 - **Voice Input:** SpeechRecognition
 - **Audio Output:** gTTS (Google Text-to-Speech)
+- This project was built using Python and the following libraries:
+
+| Component        | Technology / Library        | Purpose                                       |
+|------------------|------------------------------|------------------------------------------------|
+| Frontend UI      | Streamlit                    | Rapid web application interface.               |
+| Audio Input      | streamlit-mic-recorder       | Browser-compatible microphone recording.        |
+| Speech Processing| SpeechRecognition            | Converting WAV audio to text (STT).            |
+| The "Brain"      | Google Gemini 1.5 Flash      | LLM for generating intelligent, age-appropriate responses. |
+| Audio Output     | gTTS (Google TTS)            | Converting AI text response to MP3 audio.      |
+
 
 ---
 
