@@ -8,6 +8,25 @@
 - **SpeakGenie** is an interactive, voice-first AI application designed to help children (ages 6-16) practice English conversation. It uses Generative AI to adapt to the child's age, correct grammar gently, and supports roleplay scenarios to build confidence.
 ---
 ## 🌟 Key Features
+### 1️⃣ 🗣️ Real-Time Voice Interaction
+- **Voice-to-Voice:** The child speaks, and Genie replies instantly with audio.
+- **Web-Ready:** Uses streamlit-mic-recorder for seamless browser-based microphone access.
+- 
+### 2️⃣ 🎂 Smart Age Adaptation
+- **Dynamic Complexity:** The AI adjusts its vocabulary, sentence length, and tone based on the child's age (Slider: 6 to 16 years).
+- **Ages 6-9:** Simple words, playful tone, short sentences.
+- **Ages 10-16:** Conversational English, encouraging tone.
+  
+### 3️⃣ 🎭 Interactive Roleplay Mode
+- **Scenario-Based Learning:** Students practice real-life situations.
+- 🛒 **At the Shop:** Buying items, asking prices.
+- 🏫 **At School:** Talking to a teacher.
+- 🩺 **At the Doctor:** Describing symptoms.
+### 4️⃣ 🌏 Native Language Bridge (Bonus Feature)
+- **Visual & Audio Translation:** If a child speaks English but needs help understanding the reply, the app can:
+- Display the English text (for reading practice).
+- Speak the response in their native language (Hindi, Tamil, Marathi).
+- Display the translated text on-screen.
 
 ### 1️⃣ 🗣️ Free-Flow AI Chat
 - Acts as a friendly, safe English teacher.
