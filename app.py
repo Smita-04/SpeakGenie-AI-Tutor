@@ -201,7 +201,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # API Configuration
-GOOGLE_API_KEY = "AIzaSyCYxhSlJQJtnwakzVvMLBl4Vo6d-QaeR4U"
+GOOGLE_API_KEY = ""
 
 try:
     genai.configure(api_key=GOOGLE_API_KEY)
@@ -445,3 +445,4 @@ st.markdown("""
     
 
             
+
