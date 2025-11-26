@@ -5,7 +5,7 @@
 
 ![alt text](https://img.shields.io/badge/AI-Google_Gemini-orange)
 
-- **SpeakGenie is an interactive, voice-first AI application designed to help children (ages 6-16) practice English conversation. It uses Generative AI to adapt to the child's age, correct grammar gently, and supports roleplay scenarios to build confidence.
+- **SpeakGenie** is an interactive, voice-first AI application designed to help children (ages 6-16) practice English conversation. It uses Generative AI to adapt to the child's age, correct grammar gently, and supports roleplay scenarios to build confidence.
 ---
 ## 🌟 Key Features
 
