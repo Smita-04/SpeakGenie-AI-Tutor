@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_mic_recorder import mic_recorder
 import speech_recognition as sr
 import google.generativeai as genai
 from gtts import gTTS
@@ -41,6 +40,11 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     
+    /* Remove default chat container background */
+    .stChatFloatingInputContainer {
+        display: none !important;
+    }
+    
     /* Sidebar styling */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);
@@ -48,6 +52,25 @@ st.markdown("""
     
     [data-testid="stSidebar"] * {
         color: #ffffff !important;
+    }
+    
+    /* Button styling */
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        width: 100%;
+        font-weight: bold;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
     
     /* Chat message styling */
@@ -59,9 +82,63 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
     
-    /* User message - left side */
+    .stChatMessage p {
+        color: #333 !important;
+        font-size: 1.1rem !important;
+        margin: 0 !important;
+    }
+    
+    /* User message - left side with different color */
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
         background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+    }
+    
+    /* Assistant message - right side */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    /* Info box styling */
+    .stInfo {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white !important;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+    }
+    
+    .stInfo p, .stInfo div {
+        color: white !important;
+    }
+    
+    /* Error styling */
+    .stError {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white !important;
+        border: none;
+        border-radius: 10px;
+    }
+    
+    .stError p {
+        color: white !important;
+    }
+    
+    /* Radio buttons */
+    [data-testid="stRadio"] > label {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    
+    /* Select box */
+    [data-testid="stSelectbox"] > label {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    /* Slider styling */
+    [data-testid="stSlider"] > label {
+        font-weight: bold;
+        font-size: 1.1rem;
     }
     
     /* Feature cards */
@@ -77,8 +154,20 @@ st.markdown("""
     .feature-card h3 {
         color: #667eea;
         font-weight: bold;
+        margin: 0.5rem 0;
     }
     
+    .feature-card p {
+        color: #333;
+        font-size: 0.95rem;
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Welcome message */
     .welcome-box {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 20px;
@@ -88,22 +177,31 @@ st.markdown("""
         text-align: center;
     }
     
+    .welcome-box h2 {
+        color: #667eea;
+        margin-bottom: 1rem;
+    }
+    
+    .welcome-box p {
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    /* Section header styling */
     .section-header {
         color: #ffffff;
         font-size: 1.8rem;
         font-weight: bold;
         text-align: center;
         margin: 1.5rem 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 </style>
 """, unsafe_allow_html=True)
 
 # API Configuration
-# This checks if the key is in Secrets (Cloud) or uses your hardcoded key (Local)
-if "GOOGLE_API_KEY" in st.secrets:
-    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-else:
-    GOOGLE_API_KEY = "AIzaSyCYxhSlJQJtnwakzVvMLBl4Vo6d-QaeR4U"
+GOOGLE_API_KEY = "AIzaSyCYxhSlJQJtnwakzVvMLBl4Vo6d-QaeR4U"
 
 try:
     genai.configure(api_key=GOOGLE_API_KEY)
@@ -115,27 +213,20 @@ except Exception as e:
 # 2. HELPER FUNCTIONS
 # ==========================================
 
-# 🎙️ NEW FUNCTION: Recognize audio from Browser (Cloud Compatible)
-def recognize_audio(audio_bytes):
+def listen_to_user():
     r = sr.Recognizer()
-    # Save bytes to a temp file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
-        temp_audio.write(audio_bytes)
-        temp_filename = temp_audio.name
-
-    try:
-        with sr.AudioFile(temp_filename) as source:
-            audio_data = r.record(source)
-            text = r.recognize_google(audio_data)
+    with sr.Microphone() as source:
+        st.info("🎙️ Listening... Speak now!")
+        try:
+            audio = r.listen(source, timeout=5, phrase_time_limit=10)
+            text = r.recognize_google(audio)
             return text
-    except sr.UnknownValueError:
-        return None
-    except sr.RequestError:
-        return "API Error"
-    finally:
-        # Clean up the temp file
-        if os.path.exists(temp_filename):
-            os.remove(temp_filename)
+        except sr.UnknownValueError:
+            return None
+        except sr.RequestError:
+            return "API Error"
+        except:
+            return None
 
 def speak_text(text, lang_code='en'):
     try:
@@ -285,7 +376,7 @@ Behavior:
     if len(st.session_state.messages) > 0:
         st.markdown(f'<p class="section-header">🎭 Roleplay: {scenario}</p>', unsafe_allow_html=True)
 
-# Display Chat History
+# Display Chat History (without white box wrapper)
 if len(st.session_state.messages) > 0:
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -299,20 +390,8 @@ if len(st.session_state.messages) > 0:
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
-    st.write("👇 **Tap below to Speak:**")
-    
-    # 🔴 UPDATED BUTTON: This works on the Web!
-    audio = mic_recorder(
-        start_prompt="🎤 Start Recording",
-        stop_prompt="⏹️ Stop Recording",
-        just_once=True,
-        key='recorder'
-    )
-    
-    if audio:
-        # Processing spinner
-        with st.spinner("Genie is listening..."):
-            user_text = recognize_audio(audio['bytes'])
+    if st.button("🎤 Click to Speak", use_container_width=True):
+        user_text = listen_to_user()
         
         if user_text:
             # 1. Show User Input
@@ -342,7 +421,7 @@ with col2:
                     st.audio(audio_file, format='audio/mp3', autoplay=True)
                     
         else:
-            st.warning("😕 I didn't hear anything. Please try again!")
+            st.error("😕 I didn't catch that. Please try again!")
 
 # Footer
 st.markdown("---")
@@ -352,3 +431,17 @@ st.markdown("""
     <p style='font-size: 0.9rem;'>Backed by Amity University 🎓</p>
 </div>
 """, unsafe_allow_html=True)
+    
+        
+        
+    
+    
+       
+
+        
+  
+
+    
+    
+
+            
