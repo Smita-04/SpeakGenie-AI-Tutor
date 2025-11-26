@@ -32,7 +32,8 @@
 
 
 ### 🔹 1. Interactive Chat
-![Chat Demo](./screenshots/chat.png)
+<img width="1920" height="977" alt="Screenshot (551)" src="https://github.com/user-attachments/assets/e8c28337-175b-4dc3-be25-97df96214c27" />
+
 
 ### 🔹 2. Roleplay Mode (Shopping)
 ![Roleplay Demo](./screenshots/roleplay.png)
