@@ -36,7 +36,8 @@
 
 
 ### 🔹 2. Roleplay Mode (Shopping)
-![Roleplay Demo](./screenshots/roleplay.png)
+<img width="1920" height="969" alt="Screenshot (553)" src="https://github.com/user-attachments/assets/2b62bc2b-dc46-41be-9b1a-722a2a68e88d" />
+
 
 ### 🔹 3. Hindi Translation Support
 ![Hindi Mode](./screenshots/hindi.png)
