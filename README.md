@@ -1,10 +1,10 @@
-# 🧞‍♂️ SpeakGenie: AI Voice Tutor for Kids
+# 🧞‍♂️  SpeakGenie: Real-Time AI Voice Tutor for Kids
+![alt text](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)
 
-**SpeakGenie** is a real-time, interactive AI tutor designed to help children (ages 6-16) learn English through natural conversation and roleplay scenarios. 
+![alt text](https://img.shields.io/badge/Python-3.11-blue)
 
-Built with **Python**, **Streamlit**, and **Google Gemini 1.5**, it features instant voice feedback and unique native language support.
-
----
+![alt text](https://img.shields.io/badge/AI-Google_Gemini-orange)
+SpeakGenie is an interactive, voice-first AI application designed to help children (ages 6-16) practice English conversation. It uses Generative AI to adapt to the child's age, correct grammar gently, and supports roleplay scenarios to build confidence.
 
 ## 🌟 Key Features
 
