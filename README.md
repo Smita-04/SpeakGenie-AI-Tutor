@@ -66,4 +66,4 @@
 ## 🚀 How to Run Locally
 1. Clone the repo:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/SpeakGenie-AI-Tutor.git
+   git clone https://github.com/Smita-04/SpeakGenie-AI-Tutor.git
