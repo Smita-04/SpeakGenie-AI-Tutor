@@ -40,7 +40,8 @@
 
 
 ### 🔹 3. Hindi Translation Support
-![Hindi Mode](./screenshots/hindi.png)
+<img width="1920" height="977" alt="Screenshot (554)" src="https://github.com/user-attachments/assets/83ea5e73-eb61-41ca-9534-f6b5961305f7" />
+
 
 ---
 
