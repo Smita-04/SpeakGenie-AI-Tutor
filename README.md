@@ -26,6 +26,10 @@
 ---
 
 ## 📸 Demo
+<img width="1920" height="975" alt="Screenshot (549)" src="https://github.com/user-attachments/assets/f0842b03-018d-4883-ac5d-634be17a1bc8" />
+
+<img width="1920" height="972" alt="Screenshot (550)" src="https://github.com/user-attachments/assets/c9e5e8d6-e2d6-424b-8288-92b9b6326402" />
+
 
 ### 🔹 1. Interactive Chat
 ![Chat Demo](./screenshots/chat.png)
