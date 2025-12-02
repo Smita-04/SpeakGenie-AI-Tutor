@@ -9,7 +9,7 @@
 - **Web-Ready:** Uses streamlit-mic-recorder for seamless browser-based microphone access.
 - 
 ### 2️⃣ 🎂 Smart Age Adaptation
-- **Dynamic Complexity:** The AI adjusts its vocabulary, sentence length, and tone based on the child's age (Slider: 6 to 16 years).
+- **Dynamic Complexity:** The AI adjusts its vocabulary, sentence length, and tone based on the child's age (Slider: 6 to 16 years)
 - **Ages 6-9:** Simple words, playful tone, short sentences.
 - **Ages 10-16:** Conversational English, encouraging tone.
   
